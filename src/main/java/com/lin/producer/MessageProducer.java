@@ -22,10 +22,26 @@ public class MessageProducer {
 
     @Resource
     private AmqpTemplate amqpTemplate;
+    @Resource
+    private AmqpTemplate amqpTemplate2;
+    @Resource
+    private AmqpTemplate amqpTemplate3;
 
     public void sendMessage(Object message) {
-        System.out.println("发送："+message);
-        amqpTemplate.convertAndSend("exchange", message);
+        System.out.println("1发送：" + message);
+        amqpTemplate.convertAndSend(message);
+//        amqpTemplate.convertAndSend(message);
     }
 
+    public void sendMessage2(Object message) {
+        System.out.println("2发送：" + message);
+        amqpTemplate2.convertAndSend(message);
+//        amqpTemplate.convertAndSend(message);
+    }
+
+    public void sendMessage3(String routingKey, Object message) {
+        System.out.println("3发送：[" + message + "] routing-key = [" + routingKey + "]");
+        amqpTemplate3.convertAndSend(routingKey, message);
+//        amqpTemplate.convertAndSend(message);
+    }
 }

@@ -4,6 +4,7 @@ import com.lin.producer.MessageProducer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.io.IOException;
 
@@ -18,15 +19,15 @@ public class ControlerM {
     MessageProducer messageProducer;
 
     @RequestMapping(value = "/home")
-    public void send() {
-        int i = 0;
-        while (true) {
-            try {
-                messageProducer.sendMessage("home" + i++);
-                sleep(2000);
-            } catch (InterruptedException e) {
-
-            }
+    public void send(@RequestParam(value = "type", defaultValue = "1") String type,
+                     @RequestParam(value = "touting_key", defaultValue = "default.order.phbj") String routing_key,
+                     @RequestParam(value = "message", defaultValue = "defaultMessage") String message) {
+        if ("1".equals(type)) {
+            messageProducer.sendMessage(message);
+        } else if ("2".equals(type)) {
+            messageProducer.sendMessage2(message);
+        } else if ("3".equals(type)) {
+            messageProducer.sendMessage3(routing_key, message);
         }
     }
 }

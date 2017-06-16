@@ -30,12 +30,13 @@ public class MessageConsumer implements ChannelAwareMessageListener {
 
     @Override
     public void onMessage(Message message, Channel channel) throws Exception {
-        System.out.println("接收到：" + new String(message.getBody()));
+        System.out.println("接收到Queue：" + new String(message.getBody()));
         try {
             sleep(3000);
             channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);
         } catch (InterruptedException e) {
 
         }
+//        channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);
     }
 }
