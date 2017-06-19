@@ -7,6 +7,7 @@
   <version>1.0-SNAPSHOT</version>
   <name>244333 Maven Webapp</name>
   <url>http://maven.apache.org</url>
+
   <properties>
     <!-- spring版本号 -->
     <spring.version>3.2.8.RELEASE</spring.version>
@@ -117,6 +118,11 @@
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-validator</artifactId>
       <version>5.0.1.Final</version>
+    </dependency>
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <version>3.1.0</version>
     </dependency>
 
   </dependencies>
